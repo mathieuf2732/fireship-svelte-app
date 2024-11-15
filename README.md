@@ -18,3 +18,7 @@
 
 - server.ts: Used to make non-html API routes on the server
 - error.svelte: Fallback for a page when data fetching fails, runs on server only
+
+### lib/server directory
+
+- Only use on the server
