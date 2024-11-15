@@ -1,38 +1,20 @@
-# sv
+# Notes
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Types of files
 
-## Creating a project
+### Page
 
-If you're seeing this, you've probably already done this step. Congrats!
+- page.svelte: Main UI building block. On first load, it is rendered on the server, which is good for SEO. Then, updates are done on the client side, making it faster and more efficient.
+- page.ts: Data fetching & logic on client and server
+- page.server.ts: Data fetching only on server
 
-```bash
-# create a new project in the current directory
-npx sv create
+### Layout
 
-# create a new project in my-app
-npx sv create my-app
-```
+- layout.svelte: Share UI across multiple child routes.
+- layout.ts: Data fetching & logic on client and server
+- layout.server.ts: Data fetching only on server
 
-## Developing
+### Other
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- server.ts: Used to make non-html API routes on the server
+- error.svelte: Fallback for a page when data fetching fails, runs on server only
