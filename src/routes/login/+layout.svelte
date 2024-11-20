@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import { page } from "$app/stores";
+	import AnimatedRoute from "$lib/components/AnimatedRoute.svelte";
 
 	let { children }: { children: Snippet } = $props();
 </script>
@@ -19,8 +20,12 @@
 	</ul>
 </nav>
 
-<div class="card w4/6 bg-neutral text-neutral-content mx-auto">
-	<div class="card-body items-center text-center">
-		{@render children()}
-	</div>
-</div>
+<AnimatedRoute>
+	<main>
+		<div class="card w4/6 bg-neutral text-neutral-content mx-auto">
+			<div class="card-body items-center text-center">
+				{@render children()}
+			</div>
+		</div>
+	</main>
+</AnimatedRoute>
