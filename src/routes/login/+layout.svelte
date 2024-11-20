@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
 	import { page } from "$app/stores";
 	import AnimatedRoute from "$lib/components/AnimatedRoute.svelte";
 
-	let { children }: { children: Snippet } = $props();
+	let { children } = $props();
 </script>
 
 <nav class="flex justify-center my-6">
