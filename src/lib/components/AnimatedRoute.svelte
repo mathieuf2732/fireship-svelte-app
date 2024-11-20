@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import type { Snippet } from "svelte";
 	import { fly } from "svelte/transition";
+	interface Props {
+		children: import("svelte").Snippet;
+	}
 
-	let { children }: { children: Snippet } = $props();
+	let { children }: Props = $props();
 </script>
 
 {#key $page.url}
