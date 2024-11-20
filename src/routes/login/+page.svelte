@@ -1,7 +1,13 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
+	import { auth } from "$lib/firebase";
+	import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-	let { data }: { data: PageData } = $props();
+	async function signInWithGoogle() {
+		const provider = new GoogleAuthProvider();
+		const user = await signInWithPopup(auth, provider);
+		console.log(user);
+	}
 </script>
 
-<h2>Username</h2>
+<h2>Login</h2>
+<button class="btn btn-primary" onclick={signInWithGoogle}>Sign in with Google</button>
