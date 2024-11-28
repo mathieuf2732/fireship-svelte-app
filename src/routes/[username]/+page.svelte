@@ -1,4 +1,5 @@
 <script lang="ts">
+	import UserLink from "$lib/components/UserLink.svelte";
 	import type { PageData } from "./$types";
 	interface Props {
 		data: PageData;
@@ -22,8 +23,10 @@
 	<p class="text-xl my-8">{data.bio ?? "No bio"}</p>
 
 	<ul class="list-none">
-		{#each data.links as item}
-			{@debug item}
+		{#each data.links as link}
+			<li>
+				<UserLink {...link} />
+			</li>
 		{/each}
 	</ul>
 </main>

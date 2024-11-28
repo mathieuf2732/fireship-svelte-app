@@ -5,7 +5,7 @@
 	import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 	let previewURL = $state<string | undefined>();
-	let uploading = $state<boolean>(false);
+	let uploading = $state(false);
 
 	async function upload(e: any) {
 		uploading = true;
