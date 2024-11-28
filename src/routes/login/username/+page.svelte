@@ -5,9 +5,9 @@
 
 	const USERNAME_VALIDATION_REGEX = /^(?=[a-zA-Z0-9._]{3,16}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
-	let username = $state<string>("");
-	let loading = $state<boolean>(false);
-	let isAvailable = $state<boolean>(false);
+	let username = $state("");
+	let loading = $state(false);
+	let isAvailable = $state(false);
 	let debounceTimer: NodeJS.Timeout;
 
 	let isValid = $derived(
@@ -32,7 +32,8 @@
 		}, 500);
 	}
 
-	async function confirmUsername() {
+	async function confirmUsername(e: SubmitEvent) {
+		e.preventDefault();
 		console.log("Confirming username", username);
 		const batch = writeBatch(db);
 		batch.set(doc(db, "usernames", username), { uid: $user?.uid });
