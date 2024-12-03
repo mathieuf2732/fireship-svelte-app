@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { db, user, userData } from "$lib/firebase";
-	import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+	import { arrayRemove, arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
 	import { writable } from "svelte/store";
+	import SortableList from "$lib/components/SortableList.svelte";
+	import type { LinkListItem } from "$lib/Models/LinkItem";
+	import UserLink from "$lib/components/UserLink.svelte";
 
 	const icons = ["Youtube", "LinkedIn", "GitHub", "Custom"];
 
@@ -40,6 +43,11 @@
 		showForm = false;
 	}
 
+	function sortList(list: any) {
+		const userRef = doc(db, "users", $user!.uid);
+		setDoc(userRef, { links: list }, { merge: true });
+	}
+
 	async function deleteLink(item: any) {
 		const userRef = doc(db, "users", $user!.uid);
 		await updateDoc(userRef, {
@@ -56,6 +64,18 @@
 <main class="max-w-xl mx-auto">
 	{#if $userData?.username == $page.params.username}
 		<h1 class="mx-2 text-2xl font-bold mt-8 mb-4 text-center">Edit your profile</h1>
+
+		<SortableList list={$userData?.links} sort={sortList}>
+			{#snippet snipped(item, index)}
+				<div class="group relative">
+					<UserLink {...item as any} />
+					<button
+						class="btn btn-xs btn-error invisible group-hover:visible transition-all absolute -right-6 bottom-10"
+						onclick={() => deleteLink(item)}>Delete</button
+					>
+				</div>
+			{/snippet}
+		</SortableList>
 
 		{#if showForm}
 			<form onsubmit={addLink} class="bg-base-200 p-6 w-full mx-auto rounded-xl">
