@@ -9,7 +9,7 @@ export const handle = (async ({ event, resolve }) => {
 		event.locals.userId = decodedClaims.uid;
 	} catch {
 		event.locals.userId = null;
-		resolve(event);
+		return resolve(event);
 	}
 
 	return resolve(event);
