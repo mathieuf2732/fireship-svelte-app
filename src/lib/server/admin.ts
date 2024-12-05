@@ -1,19 +1,15 @@
-import { getAuth } from 'firebase-admin/auth';
-import { getFirestore } from 'firebase-admin/firestore';
-import { FB_CLIENT_EMAIL, FB_PRIVATE_KEY, FB_PROJECT_ID } from '$env/static/private';
-import pkg from 'firebase-admin';
+import { getAuth } from "firebase-admin/auth";
+import { FIREBASE_SERVICE_ACCOUNT } from "$env/static/private";
+import admin from "firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
 
 try {
-	pkg.initializeApp({
-		credential: pkg.credential.cert({
-			projectId: FB_PROJECT_ID,
-			clientEmail: FB_CLIENT_EMAIL,
-			privateKey: FB_PRIVATE_KEY
-		})
+	admin.initializeApp({
+		credential: admin.credential.cert(FIREBASE_SERVICE_ACCOUNT)
 	});
 } catch (e: unknown) {
 	if (e instanceof Error && !/already exists/.test(e.message)) {
-		console.error('Firebase Admin Error: ', e.stack);
+		console.error("Firebase Admin Error: ", e.stack);
 	}
 }
 
