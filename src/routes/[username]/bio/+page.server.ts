@@ -1,5 +1,5 @@
 import { adminDB } from "$lib/server/admin";
-import { error, redirect } from "@sveltejs/kit";
+import { error, fail, redirect, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
 export const load = (async ({ locals, params }) => {
@@ -18,3 +18,19 @@ export const load = (async ({ locals, params }) => {
 
 	return { bio };
 }) satisfies PageServerLoad;
+
+export const actions = {
+	default: async ({ locals, request }) => {
+		const uid = locals.userId!;
+
+		const data = await request.formData();
+		const bio = data.get("bio")?.toString() ?? "";
+
+		if (bio.length > 260) {
+			return fail(400, { problem: "Bio must be less than 260 characters" });
+		}
+
+		const userRef = adminDB.collection("users").doc(uid);
+		await userRef.update({ bio });
+	}
+} satisfies Actions;
