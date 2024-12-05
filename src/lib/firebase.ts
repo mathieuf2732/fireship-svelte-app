@@ -4,15 +4,23 @@ import { getAuth, onAuthStateChanged, type User } from "firebase/auth";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { derived, writable, type Readable } from "svelte/store";
+import {
+	PUBLIC_FB_API_KEY,
+	PUBLIC_FB_APP_ID,
+	PUBLIC_FB_AUTH_DOMAIN,
+	PUBLIC_FB_MESSAGING_SENDER_ID,
+	PUBLIC_FB_PROJECT_ID,
+	PUBLIC_FB_STORAGE_BUCKET
+} from "$env/static/public";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: "AIzaSyA994langTIyKXUZ0LG6YMb7K8j9dSTL6E",
-	authDomain: "svelte-melvin.firebaseapp.com",
-	projectId: "svelte-melvin",
-	storageBucket: "svelte-melvin.firebasestorage.app",
-	messagingSenderId: "76784658428",
-	appId: "1:76784658428:web:65279cb8a4aad232893479"
+	apiKey: PUBLIC_FB_API_KEY,
+	authDomain: PUBLIC_FB_AUTH_DOMAIN,
+	projectId: PUBLIC_FB_PROJECT_ID,
+	storageBucket: PUBLIC_FB_STORAGE_BUCKET,
+	messagingSenderId: PUBLIC_FB_MESSAGING_SENDER_ID,
+	appId: PUBLIC_FB_APP_ID
 };
 
 // Initialize Firebase
