@@ -22,8 +22,6 @@
 		loading = true;
 
 		debounceTimer = setTimeout(async () => {
-			console.log("Checking availability of", username);
-
 			const ref = doc(db, "usernames", username);
 			const exists = await getDoc(ref).then((doc) => doc.exists());
 
@@ -34,7 +32,6 @@
 
 	async function confirmUsername(e: SubmitEvent) {
 		e.preventDefault();
-		console.log("Confirming username", username);
 		const batch = writeBatch(db);
 		batch.set(doc(db, "usernames", username), { uid: $user?.uid });
 		batch.set(doc(db, "users", $user!.uid), {
