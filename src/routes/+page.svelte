@@ -4,15 +4,13 @@
 	import { goto } from "$app/navigation";
 
 	onMount(() => {
-		const unsubscribe = userData.subscribe((userData) => {
-			if (userData?.username) {
-				goto(`/${userData.username}`);
+		setTimeout(() => {
+			if ($userData?.username) {
+				goto(`/${$userData.username}`);
 			} else {
 				goto("/login");
 			}
-		});
-
-		return () => unsubscribe();
+		}, 1000);
 	});
 </script>
 
