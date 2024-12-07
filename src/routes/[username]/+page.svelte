@@ -23,7 +23,7 @@
 
 	<p class="text-xl my-8">{data.bio ?? "No bio"}</p>
 
-	<ul class="list-none flex flex-col justify-center items-center mx-auto">
+	<ul class="list-none flex flex-col justify-center items-center mx-auto p-0">
 		{#each data.links as link}
 			<li class="w-80">
 				<UserLink {...link} />
