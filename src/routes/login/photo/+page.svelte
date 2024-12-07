@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import AuthCheck from "$lib/components/AuthCheck.svelte";
 	import ProfileLink from "$lib/components/ProfileLink.svelte";
 	import { db, storage, user, userData } from "$lib/firebase";
@@ -18,6 +19,7 @@
 
 		await updateDoc(doc(db, "users", $user!.uid), { photoURL: url });
 		uploading = false;
+		goto(`/${$userData!.username}`);
 	}
 </script>
 

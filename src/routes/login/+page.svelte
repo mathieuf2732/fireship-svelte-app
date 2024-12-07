@@ -1,6 +1,14 @@
 <script lang="ts">
-	import { auth, user } from "$lib/firebase";
+	import { goto } from "$app/navigation";
+	import { auth, user, userData } from "$lib/firebase";
 	import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+	import { onDestroy } from "svelte";
+
+	let unsubscribe: () => void;
+
+	onDestroy(() => {
+		unsubscribe?.();
+	});
 
 	async function signInWithGoogle() {
 		const provider = new GoogleAuthProvider();
@@ -16,11 +24,20 @@
 			},
 			body: JSON.stringify({ idToken })
 		});
+
+		unsubscribe = userData.subscribe((userData) => {
+			if (userData?.username) {
+				goto(`/${userData.username}`);
+			} else {
+				goto("/login/username");
+			}
+		});
 	}
 
 	async function signOutSSR() {
 		await fetch("/api/signin", { method: "DELETE" });
 		await signOut(auth);
+		unsubscribe?.();
 	}
 </script>
 

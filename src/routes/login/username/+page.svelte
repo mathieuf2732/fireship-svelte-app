@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import AuthCheck from "$lib/components/AuthCheck.svelte";
 	import { db, user, userData } from "$lib/firebase";
 	import { doc, getDoc, writeBatch } from "firebase/firestore";
@@ -44,6 +45,7 @@
 		});
 
 		await batch.commit();
+		goto("/login/photo");
 	}
 </script>
 

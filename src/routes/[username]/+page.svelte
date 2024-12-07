@@ -23,15 +23,15 @@
 
 	<p class="text-xl my-8">{data.bio ?? "No bio"}</p>
 
-	<ul class="list-none">
+	<ul class="list-none flex flex-col justify-center items-center mx-auto">
 		{#each data.links as link}
-			<li>
+			<li class="w-80">
 				<UserLink {...link} />
 			</li>
 		{/each}
 	</ul>
 	{#if $userData?.username == data.username}
-		<div class="flex flex-row">
+		<div class="flex flex-row justify-center">
 			<a class="btn mx-1" href={`/${$userData!.username}/edit`}> Edit your links </a>
 			<a class="btn mx-1" href={`/${$userData!.username}/bio`}> Edit your bio </a>
 			<a class="btn mx-1" href="/login/photo">Edit your photo</a>
