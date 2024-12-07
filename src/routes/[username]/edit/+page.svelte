@@ -12,7 +12,7 @@
 	const formDefaults = {
 		icon: "custom",
 		title: "",
-		url: "https://"
+		url: ""
 	};
 
 	const formData = writable(formDefaults);
