@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import AnimatedRoute from "$lib/components/AnimatedRoute.svelte";
+	import ProfileLink from "$lib/components/ProfileLink.svelte";
+	import { userData } from "$lib/firebase";
 
 	let { children } = $props();
 </script>
@@ -28,3 +30,9 @@
 		</div>
 	</main>
 </AnimatedRoute>
+
+{#if $userData?.username}
+	<div class="w-1/6 mx-auto text-center">
+		<ProfileLink />
+	</div>
+{/if}

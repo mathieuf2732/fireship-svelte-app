@@ -49,5 +49,4 @@
 			<progress class="progress progress-info w-56 mt-6" />
 		{/if}
 	</form>
-	<ProfileLink />
 </AuthCheck>
