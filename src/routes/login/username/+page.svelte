@@ -5,7 +5,8 @@
 
 	const USERNAME_VALIDATION_REGEX = /^(?=[a-zA-Z0-9._]{3,16}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
-	let username = $state("");
+	let inputValue = $state("");
+	let username = $derived(inputValue.toLocaleLowerCase());
 	let loading = $state(false);
 	let isAvailable = $state(false);
 	let debounceTimer: NodeJS.Timeout;
@@ -52,12 +53,13 @@
 			Your username is <span class="text-success font-bold">@{$userData.username}</span>
 		</p>
 	{:else}
+		<h1>Choose Your Username</h1>
 		<form class="w-2/5" onsubmit={confirmUsername}>
 			<input
 				type="text"
 				placeholder="Username"
-				class="input w-full"
-				bind:value={username}
+				class="input w-full lowercase"
+				bind:value={inputValue}
 				oninput={checkAvailability}
 				class:input-error={!isValid && isTouched}
 				class:input-warning={isTaken}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AuthCheck from "$lib/components/AuthCheck.svelte";
+	import ProfileLink from "$lib/components/ProfileLink.svelte";
 	import { db, storage, user, userData } from "$lib/firebase";
 	import { doc, updateDoc } from "firebase/firestore";
 	import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -33,9 +34,6 @@
 				class="mx-auto"
 			/>
 		</div>
-		<label for="photoURL" class="label">
-			<span class="label-text">Pick a file</span>
-		</label>
 		<input
 			onchange={upload}
 			name="photoURL"
@@ -49,4 +47,5 @@
 			<progress class="progress progress-info w-56 mt-6" />
 		{/if}
 	</form>
+	<ProfileLink />
 </AuthCheck>

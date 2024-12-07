@@ -6,7 +6,7 @@ import { error } from "@sveltejs/kit";
 export const load = (async ({ params }) => {
 	const collectionRef = collection(db, "users");
 
-	const q = query(collectionRef, where("username", "==", params.username), limit(1));
+	const q = query(collectionRef, where("username", "==", params.username.toLowerCase()), limit(1));
 
 	const snapshot = await getDocs(q);
 	const exists = snapshot.docs[0]?.exists();

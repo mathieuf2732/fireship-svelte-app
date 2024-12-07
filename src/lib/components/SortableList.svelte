@@ -6,7 +6,7 @@
 	interface Props {
 		list: any[];
 		sort: (list: LinkListItem[]) => void;
-		snipped: Snippet<[LinkListItem, number]>;
+		snipped: Snippet<[LinkListItem]>;
 	}
 
 	let { list, sort, snipped }: Props = $props();
@@ -66,7 +66,7 @@
 				ondrop={onDrop}
 				animate:flip={{ duration: 300 }}
 			>
-				{@render snipped(item, index)}
+				{@render snipped(item)}
 			</li>
 		{/each}
 	</ul>

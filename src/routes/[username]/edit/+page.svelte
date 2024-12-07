@@ -4,8 +4,8 @@
 	import { arrayRemove, arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
 	import { writable } from "svelte/store";
 	import SortableList from "$lib/components/SortableList.svelte";
-	import type { LinkListItem } from "$lib/Models/LinkItem";
 	import UserLink from "$lib/components/UserLink.svelte";
+	import ProfileLink from "$lib/components/ProfileLink.svelte";
 
 	const icons = ["Youtube", "LinkedIn", "GitHub", "Custom"];
 
@@ -63,10 +63,10 @@
 
 <main class="max-w-xl mx-auto">
 	{#if $userData?.username == $page.params.username}
-		<h1 class="mx-2 text-2xl font-bold mt-8 mb-4 text-center">Edit your profile</h1>
+		<h1 class="mx-2 text-2xl font-bold mt-8 mb-4 text-center">Edit your Links</h1>
 
 		<SortableList list={$userData?.links} sort={sortList}>
-			{#snippet snipped(item, index)}
+			{#snippet snipped(item)}
 				<div class="group relative">
 					<UserLink {...item as any} />
 					<button
@@ -123,5 +123,8 @@
 				Add a link
 			</button>
 		{/if}
+		<div class="text-center">
+			<ProfileLink />
+		</div>
 	{/if}
 </main>

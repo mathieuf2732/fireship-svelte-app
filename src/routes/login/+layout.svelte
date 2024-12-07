@@ -21,7 +21,7 @@
 
 <AnimatedRoute>
 	<main>
-		<div class="card w-4/6 bg-neutral text-neutral-content mx-auto">
+		<div class="card w-1/3 bg-neutral text-neutral-content mx-auto">
 			<div class="card-body items-center text-center">
 				{@render children()}
 			</div>

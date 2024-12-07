@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
 	import { page } from "$app/stores";
+	import ProfileLink from "$lib/components/ProfileLink.svelte";
 	import type { PageData } from "./$types";
 
 	interface Props {
@@ -26,4 +27,6 @@
 		</div>
 		<button type="submit" class="btn btn-primary my-5">Udpdate Bio</button>
 	</form>
+
+	<ProfileLink />
 </main>
